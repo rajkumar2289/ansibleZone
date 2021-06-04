@@ -1,0 +1,24 @@
+---
+  java_version: java-1.8.0-openjdk
+  set_java: jre-1.8.0-openjdk-1.8.0.292.b10-1.el7_9.x86_64
+  service: 
+    - ngnix
+    - kibana
+    - logstash
+  software_list:
+    - git
+    - wget
+    - tree
+    - vim
+    - java
+    - maven
+    
+# Ec2 variable section
+  key_name: /etc/ansible/elk/tests/ansible
+  security_group: rajkumar_SG
+  instance_type: t2.micro
+  aws_zone: us-east-2b
+  ec2_region: us-east-2
+  ec2_instances_count: 1
+
+

@@ -1,0 +1,22 @@
+---
+- name: create new EC2 instance for application deployment
+  ec2:
+    key_name: "{{key_name}}"
+    group: "{{security_group}}"
+    instance_type: "{{instance_type}}"
+    image: ami-01e36b7901e884a10
+    aws_zone: "{{aws_zone}}"
+    region: "{{ec2_region}}"
+    count: "{{ec2_instances_count}}"
+    count_tag:
+      Application: Online Booking
+    instance_tags:
+      Application: Online Booking
+    vpc_subnet_id: subnet-65a94518
+    assign_public_ip: yes
+  register: ec2
+
+- name: software installation
+  yum: name={{ item }} update_cache=yes state=latest
+  with_items: 
+    - "{{ software_list }}"
